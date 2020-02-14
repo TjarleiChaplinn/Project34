@@ -1,7 +1,7 @@
 # Project - 3/4
 ---
-##Leden: 
-* Rowdey Goos
-* Pim Brederode
-* Jelle Koedam
-* Charlie de Raaf
+## Leden: 
+* _Rowdey Goos_
+* _Pim Brederode_
+* _Jelle Koedam_
+* _Charlie de Raaf_
