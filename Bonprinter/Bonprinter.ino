@@ -26,19 +26,20 @@ void loop() {
   printer.println(F("-------------------------------"));
 
   printer.boldOn();
-  String tijd = (String)tijdUren + ":" + (String) tijdMinuten;
+  String tijd = dag + "/" + maand + "/"  + jaar + "  " + tijdUren + ":" + tijdMinuten;
   printer.println(tijd);
   String addressFull = address + ", " + plaats;
   printer.println(addressFull);
-  String devicenrFull = "Automaat nummer: " + (String)devicenr;
+  String devicenrFull = "Automaat nummer: " + devicenr;
   printer.println(devicenrFull);
   printer.boldOff();
 
   printer.feed(1);
   printer.justify('L');
-  String naamFull = "Naam: " + anaam + ", " + initialen + ".";
-  printer.println(naamFull);
-  printer.println(F("Rekening: NL95 INGB 47** **** **"));
+  String transFull = "Transactie nr.: " + transnr;
+  printer.println(transFull);
+  String rekeningFull = "Rekening: " + rekening + "** **** **";
+  printer.println(rekeningFull);
   
   printer.justify('C');
   printer.println(F("-------------------------------"));
@@ -46,7 +47,7 @@ void loop() {
 
   printer.setSize('M');
   printer.println(bericht);
-  String bedragFull = "Bedrag: " + (String)bedrag + " roebel";
+  String bedragFull = "Bedrag: " + bedrag + " roebel";
   printer.println(bedragFull);
 
   printer.feed(1);

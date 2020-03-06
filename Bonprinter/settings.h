@@ -1,9 +1,15 @@
-String address = "Wijnhaven 107";
-String plaats = "Rotterdam";
-int devicenr = 8;
-String anaam = "de Raaf";
-String initialen = "C";
-int bedrag = 100;
+String address = "Emmastraat 23";
+String plaats = "Hogwards";
+
+String bedrag = "45";
 String bericht = "U heeft geld opgenomen";
-int tijdUren = 16;
-int tijdMinuten = 57;
+
+String transnr = "143";
+String rekening = "NL95 INGB 47";
+
+String dag = "06";
+String maand = "03";
+String jaar = "2020";
+String tijdUren = "12";
+String tijdMinuten = "05";
+String devicenr = "8327";
