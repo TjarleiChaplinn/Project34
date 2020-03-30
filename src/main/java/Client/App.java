@@ -18,7 +18,7 @@ public class App extends Application {
         // Parent root = FXMLLoader.load(getClass().getResource("/HomeOld.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("/wachtwoordScherm.fxml"));
 
-        primaryStage.setTitle("Green Tomato");
+        primaryStage.setTitle("ATM");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

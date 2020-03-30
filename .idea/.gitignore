@@ -1,2 +1,32 @@
 # Default ignored files
 /workspace.xml
+
+# Mac users
+.DS_Store
+
+# For our emacs users
+*~
+
+## Gradle
+.gradle
+/build/
+/out/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# for eclipse users
+.classpath
+.project
+.settings/
+
+# for intellij users
+.idea/
+*.iml
+/bin
