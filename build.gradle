@@ -36,6 +36,18 @@ dependencies {
 
     // ControlsFX
     compile 'org.controlsfx:controlsfx:11.0.1'
+
+    // OkHTTPClient
+    implementation 'com.squareup.okhttp3:okhttp:4.4.0'
+
+    //JSON
+    compile 'org.json:json:20190722'
+
+    //Vertx Server
+    compile 'io.vertx:vertx-core:3.9.0'
+
+    //Vertx web
+    compile 'io.vertx:vertx-web:3.9.0'
 }
 
 application {
