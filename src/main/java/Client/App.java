@@ -12,11 +12,13 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
+    static public int totaalbedrag=0;
 //    @Override
     public void start(Stage primaryStage) throws Exception {
 
+
         // Parent root = FXMLLoader.load(getClass().getResource("/HomeOld.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/wachtwoordScherm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/main.fxml"));
 
         primaryStage.setTitle("ATM");
         primaryStage.setScene(new Scene(root));

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" width="105.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="80.0" layoutY="320.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
+      <Text fill="RED" fontSmoothingType="LCD" layoutX="110.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welkom bij de bank," wrappingWidth="200.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="374.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Pictures/soviet.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="RED" fontSmoothingType="LCD" layoutX="110.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voer uw pas in om te beginnen" wrappingWidth="287.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="start" layoutX="522.0" layoutY="348.0" mnemonicParsing="false" text="Start" />
+   </children>
+</AnchorPane>
