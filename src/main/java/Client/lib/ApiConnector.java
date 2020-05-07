@@ -11,6 +11,7 @@ import java.time.format.DateTimeParseException;
 
 public class ApiConnector {
 
+    private static final String apiKey = "6v1x5ujo8a4xgarh6t379h3yszgsi55o";
     private OkHttpClient httpClient;
     private String apiUrl;
 
@@ -32,9 +33,13 @@ public class ApiConnector {
             this.httpClient = new OkHttpClient();
             this.apiUrl = "http://localhost:8080";
         } else {
-            this.httpClient = new OkHttpClient();
-            this.apiUrl = "https://188.166.115.194:8080";
+            this.httpClient = secureHttpClient.build();
+            this.apiUrl = "https://145.24.222.131:8080";
         }
+    }
+
+    public void verifyPin() {
+
     }
 
     public String getBalance() throws IOException {
@@ -59,6 +64,7 @@ public class ApiConnector {
 //                .header("originBank", originBank)
 //                .header("receiveCountry", receiveCountry)
 //                .header("receiveBank", receiveBank)
+                .header("X-ApiKey", apiKey)
                 .url(apiUrl + endpoint);
 
         RequestBody body = RequestBody.create(
