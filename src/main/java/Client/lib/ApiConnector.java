@@ -18,6 +18,8 @@ public class ApiConnector {
 
     private String account;
     private String pin;
+    private String message;
+    private boolean verification;
 
     private String originCountry;
     private String originBank;
@@ -39,18 +41,12 @@ public class ApiConnector {
         }
     }
 
-    public String verifyPin(String account, String pin) throws IOException {
+    public boolean verifyPin(String account, String pin) throws IOException {
         JSONObject json = new JSONObject();
         json.put("pin", pin);
         json.put("account", account);
         JSONObject json1 = basicRequest("PUT", "/user", json.toString());
-        try {
-            String balance = json1.getString("balance");
-            return balance;
-        } catch (DateTimeParseException | JSONException e) {
-            throw new IOException();
-        }
-
+        return verification;
     }
 
     public String getBalance() throws IOException {
@@ -109,7 +105,8 @@ public class ApiConnector {
                     switch (method) {
                         case "DELETE":
                         case "POST":
-//                        case "PUT":
+                        case "PUT":
+                            verification = true;
 //                            return null;
                         default:
                             return new JSONObject(responseString);
@@ -117,6 +114,8 @@ public class ApiConnector {
                 case 401:
                     JSONObject json = new JSONObject(responseString);
                     String error = json.getString("message");
+                    message = error;
+                    verification = false;
                     if (error.equals("Pas is geblokkeerd")) {
                         System.out.println(error);
                     } else {
