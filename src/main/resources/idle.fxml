@@ -15,9 +15,9 @@
             <Font name="Arial" size="20.0" />
          </font>
       </Text>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="374.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="397.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Pictures/soviet.jpg" />
+            <Image url="@Pictures/soviet.png" />
          </image>
       </ImageView>
       <Text fill="RED" fontSmoothingType="LCD" layoutX="110.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voer uw pas in om te beginnen" wrappingWidth="287.0">

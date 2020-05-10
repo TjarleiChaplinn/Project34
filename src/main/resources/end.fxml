@@ -43,7 +43,7 @@
       </Text>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="374.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Pictures/soviet.jpg" />
+            <Image url="@Pictures/soviet.png" />
          </image>
       </ImageView>
       <Text fx:id="bedrag1" fill="RED" fontSmoothingType="LCD" layoutX="110.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bon printen" wrappingWidth="189.13671875">

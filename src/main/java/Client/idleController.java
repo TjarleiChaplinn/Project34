@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,7 +17,7 @@ public class idleController {
     Button start;
 
     public void start(ActionEvent event) throws IOException {
-        Parent signupParent = FXMLLoader.load(getClass().getResource("/main.fxml"));
+        Parent signupParent = FXMLLoader.load(getClass().getResource("/login.fxml"));
         Scene signupScene = new Scene(signupParent);
 
         //This line gets the Stage information

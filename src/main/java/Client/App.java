@@ -21,7 +21,7 @@ public class App extends Application {
 
 
         // Parent root = FXMLLoader.load(getClass().getResource("/HomeOld.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/idle.fxml"));
 
         primaryStage.setTitle("ATM");
         primaryStage.setScene(new Scene(root));
