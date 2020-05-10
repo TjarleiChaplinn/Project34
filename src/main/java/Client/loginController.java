@@ -29,26 +29,37 @@ public class loginController {
         String password = pin.getText();
         try {
             App.apiConnector = new ApiConnector("test", password, false);
+            if (App.apiConnector.verifyPin("1", password)==true){
+                Parent signupParent = FXMLLoader.load(getClass().getResource("/main.fxml"));
+                Scene signupScene = new Scene(signupParent);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                window.setScene(signupScene);
+                window.show();
+            } else{
+                melding.setText(App.apiConnector.getMessage());
+            }
 //            System.out.println(App.apiConnector.getBalance());
-            System.out.println(App.apiConnector.verifyPin("1", password));
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("API connection error: " + e.getMessage());
         }
-        if (counter == 3) {
-            melding.setText("Pas geblokkeerd!");
-        } else if(password=="1234"){
-            int counter=0;
-            Parent signupParent = FXMLLoader.load(getClass().getResource("/menu.fxml"));
-            Scene signupScene = new Scene(signupParent);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            window.setScene(signupScene);
-            window.show();
-//        }else if(password!="1234"){
-//            counter++;
-//            melding.setText("Foute pincode, "+(3-counter)+" pogingen over "+password);
-       }
+
+//        if (counter == 3) {
+//            melding.setText("Pas geblokkeerd!");
+//        } else if(password=="1234"){
+//            int counter=0;
+//            Parent signupParent = FXMLLoader.load(getClass().getResource("/menu.fxml"));
+//            Scene signupScene = new Scene(signupParent);
+//            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//
+//            window.setScene(signupScene);
+//            window.show();
+////        }else if(password!="1234"){
+////            counter++;
+////            melding.setText("Foute pincode, "+(3-counter)+" pogingen over "+password);
+//       }
 
     }
 

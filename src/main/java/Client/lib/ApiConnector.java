@@ -23,7 +23,9 @@ public class ApiConnector {
     private String receiveCountry;
     private String receiveBank;
 
-
+    public String getMessage() {
+        return message;
+    }
     //ApiConnector
     //moet aangepast worden want moet ook kunnen verbinden zonder juiste gegevens
     public ApiConnector(String account, String pin, boolean localhost) {
@@ -118,6 +120,7 @@ public class ApiConnector {
                     } else {
                         System.out.println(error);
                     }
+                    return new JSONObject(responseString);
                 default:
                     throw new IOException();
             }
