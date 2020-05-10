@@ -31,9 +31,13 @@ public class mainController {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(signupScene);
+        App.setNul();
         window.show();
+
     }
     public void snelPin(ActionEvent event) throws IOException {
+        App.setNul();
+        App.totaalbedrag+=70;
         Parent signupParent = FXMLLoader.load(getClass().getResource("/end.fxml"));
         Scene signupScene = new Scene(signupParent);
 
@@ -41,7 +45,11 @@ public class mainController {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(signupScene);
+
         window.show();
+//        endController obj = new endController();
+
+//        obj.bedrag2.setText("asdasd");
     }
 
     public void stop(ActionEvent event) throws IOException {

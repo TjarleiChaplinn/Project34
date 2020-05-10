@@ -3,6 +3,7 @@ package Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,8 +12,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class endController {
+public class endController implements Initializable {
     @FXML
     Button end;
     @FXML
@@ -20,10 +23,7 @@ public class endController {
     @FXML
     Button stop;
     @FXML
-    Text bedrag;
-    public void execute(){
-        bedrag.setText("RUB: "+App.totaalbedrag);
-    }
+    Text bedrag2;
 
     public void menu(ActionEvent event) throws IOException {
         Parent signupParent = FXMLLoader.load(getClass().getResource("/main.fxml"));
@@ -43,5 +43,10 @@ public class endController {
 
         window.setScene(signupScene);
         window.show();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        bedrag2.setText("RUB: "+App.totaalbedrag);
     }
 }

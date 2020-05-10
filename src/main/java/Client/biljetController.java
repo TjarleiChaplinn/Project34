@@ -76,8 +76,8 @@ public class biljetController {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(signupScene);
-       endController obj = new endController();
-        window.setOnShowing(e-> obj.execute());
+//        endController obj = new endController();
+//        window.setOnShowing(e-> obj.execute());
         window.show();
     }
     public void stop(ActionEvent event) throws IOException {

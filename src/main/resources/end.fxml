@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.endController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.endController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" width="105.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="80.0" layoutY="320.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
@@ -18,7 +16,7 @@
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>
       </Button>
-      <Button fx:id="stop" ellipsisString="dsa" layoutX="534.0" layoutY="340.0" mnemonicParsing="false" onAction="#stop" prefHeight="40.0" prefWidth="40.0" text="4">
+      <Button fx:id="stop" ellipsisString="dsa" layoutX="534.0" layoutY="340.0" mnemonicParsing="false" onAction="#stop" prefHeight="40.0" prefWidth="40.0" text="#">
          <effect>
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>
@@ -48,5 +46,20 @@
             <Image url="@../../Pictures/soviet.jpg" />
          </image>
       </ImageView>
+      <Text fx:id="bedrag1" fill="RED" fontSmoothingType="LCD" layoutX="110.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bon printen" wrappingWidth="189.13671875">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="bon" ellipsisString="dsa" layoutX="33.0" layoutY="84.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="2">
+         <effect>
+            <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
+         </effect>
+      </Button>
+      <Text fx:id="bedrag2" fill="RED" fontSmoothingType="LCD" layoutX="300.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="189.13671875">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

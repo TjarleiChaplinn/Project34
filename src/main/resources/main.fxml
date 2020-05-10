@@ -21,7 +21,7 @@
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>
       </Button>
-      <Button fx:id="stop" ellipsisString="dsa" layoutX="534.0" layoutY="340.0" mnemonicParsing="false" onAction="#stop" prefHeight="40.0" prefWidth="40.0" text="4">
+      <Button fx:id="stop" ellipsisString="dsa" layoutX="534.0" layoutY="340.0" mnemonicParsing="false" onAction="#stop" prefHeight="40.0" prefWidth="40.0" text="#">
          <effect>
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>
