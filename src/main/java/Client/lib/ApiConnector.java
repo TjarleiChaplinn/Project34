@@ -48,8 +48,11 @@ public class ApiConnector {
         return verification;
     }
 
-    public String getBalance() throws IOException {
-        JSONObject json = basicRequest("GET", "/user/balance", "");
+    public String getBalance(String account, String pin) throws IOException {
+        JSONObject json1 = new JSONObject();
+        json1.put("pin", pin);
+        json1.put("account", account);
+        JSONObject json = basicRequest("PUT", "/user/balance", json1.toString());
         try {
             String balance = json.getString("balance");
             return balance;
