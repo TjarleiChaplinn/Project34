@@ -1,5 +1,6 @@
 package Client.lib;
 
+import io.vertx.core.json.JsonObject;
 import okhttp3.*;
 
 import org.json.JSONException;
@@ -38,12 +39,22 @@ public class ApiConnector {
         }
     }
 
-    public void verifyPin() {
+    public String verifyPin(String account, String pin) throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("pin", pin);
+        json.put("account", account);
+        JSONObject json1 = basicRequest("PUT", "/user", json.toString());
+        try {
+            String balance = json1.getString("balance");
+            return balance;
+        } catch (DateTimeParseException | JSONException e) {
+            throw new IOException();
+        }
 
     }
 
     public String getBalance() throws IOException {
-        JSONObject json = basicRequest("GET", "/user", "");
+        JSONObject json = basicRequest("GET", "/user/balance", "");
         try {
             String balance = json.getString("balance");
             return balance;
@@ -72,6 +83,7 @@ public class ApiConnector {
 
         switch (method) {
             case "GET":
+                requestBuilder.put(body);
                 break;
             case "DELETE":
                 requestBuilder.delete();
@@ -97,16 +109,18 @@ public class ApiConnector {
                     switch (method) {
                         case "DELETE":
                         case "POST":
-                        case "PUT":
-                            return null;
+//                        case "PUT":
+//                            return null;
                         default:
                             return new JSONObject(responseString);
                     }
-                case 403:
+                case 401:
                     JSONObject json = new JSONObject(responseString);
-                    String error = json.getString("error");
-                    if (error.equals("Combination of pass and pincode not correct.")) {
-//                        throw new PasswordIncorrectException();
+                    String error = json.getString("message");
+                    if (error.equals("Pas is geblokkeerd")) {
+                        System.out.println(error);
+                    } else {
+                        System.out.println(error);
                     }
                 default:
                     throw new IOException();

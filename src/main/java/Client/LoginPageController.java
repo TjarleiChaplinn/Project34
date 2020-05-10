@@ -26,11 +26,12 @@ public class LoginPageController {
     @FXML
     public void logIn(ActionEvent event) throws IOException {
         String password =pinCodeField.getText();
-
+        System.out.println(password);
         //try to login to server
         try {
             App.apiConnector = new ApiConnector("test", password, false);
-            System.out.println(App.apiConnector.getBalance());
+//            System.out.println(App.apiConnector.getBalance());
+            System.out.println(App.apiConnector.verifyPin("1", password));
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("API connection error: " + e.getMessage());
