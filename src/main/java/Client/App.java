@@ -4,6 +4,7 @@
 package Client;
 
 
+import Client.lib.ApiConnector;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +14,8 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     static public int totaalbedrag=0;
+    public static ApiConnector apiConnector;
+
 //    @Override
     public void start(Stage primaryStage) throws Exception {
 
