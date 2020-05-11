@@ -30,6 +30,7 @@ public class loginController {
         try {
             App.apiConnector = new ApiConnector("test", password, false);
             if (App.apiConnector.verifyPin("1", password)==true){
+                App.balance=App.apiConnector.getBalance("1", password);
                 Parent signupParent = FXMLLoader.load(getClass().getResource("/main.fxml"));
                 Scene signupScene = new Scene(signupParent);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     static public int totaalbedrag=0;
+    static public String balance="0";
     public static ApiConnector apiConnector;
 
 //    @Override
