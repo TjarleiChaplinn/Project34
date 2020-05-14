@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static java.lang.Integer.valueOf;
+
 public class biljetController implements Initializable {
 
     public int nvijf=0;
@@ -72,6 +74,7 @@ public class biljetController implements Initializable {
         window.show();
     }
     public void pin(ActionEvent event) throws IOException {
+        if (valueOf(App.balance) >= App.totaalbedrag) {
         Parent signupParent = FXMLLoader.load(getClass().getResource("/end.fxml"));
         Scene signupScene = new Scene(signupParent);
 
@@ -79,9 +82,19 @@ public class biljetController implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(signupScene);
-//        endController obj = new endController();
-//        window.setOnShowing(e-> obj.execute());
+
         window.show();
+    } else {
+        Parent signupParent = FXMLLoader.load(getClass().getResource("/warning.fxml"));
+        Scene signupScene = new Scene(signupParent);
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(signupScene);
+
+        window.show();
+    }
     }
     public void stop(ActionEvent event) throws IOException {
         Parent signupParent = FXMLLoader.load(getClass().getResource("/idle.fxml"));
@@ -93,5 +106,6 @@ public class biljetController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        App.setNul();
     }
 }

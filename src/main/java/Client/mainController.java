@@ -53,11 +53,16 @@ public class mainController implements Initializable {
             window.setScene(signupScene);
 
             window.show();
-//        endController obj = new endController();
-
-//        obj.bedrag2.setText("asdasd");
         } else {
+            Parent signupParent = FXMLLoader.load(getClass().getResource("/warning.fxml"));
+            Scene signupScene = new Scene(signupParent);
 
+            //This line gets the Stage information
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            window.setScene(signupScene);
+
+            window.show();
         }
     }
 
