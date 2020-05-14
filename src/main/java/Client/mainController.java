@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static java.lang.Integer.valueOf;
+
 public class mainController implements Initializable {
 
     @FXML
@@ -39,20 +41,24 @@ public class mainController implements Initializable {
 
     }
     public void snelPin(ActionEvent event) throws IOException {
-        App.setNul();
-        App.totaalbedrag+=70;
-        Parent signupParent = FXMLLoader.load(getClass().getResource("/end.fxml"));
-        Scene signupScene = new Scene(signupParent);
+        if (valueOf(App.balance) >= 70) {
+            App.setNul();
+            App.totaalbedrag += 70;
+            Parent signupParent = FXMLLoader.load(getClass().getResource("/end.fxml"));
+            Scene signupScene = new Scene(signupParent);
 
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            //This line gets the Stage information
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        window.setScene(signupScene);
+            window.setScene(signupScene);
 
-        window.show();
+            window.show();
 //        endController obj = new endController();
 
 //        obj.bedrag2.setText("asdasd");
+        } else {
+
+        }
     }
 
     public void stop(ActionEvent event) throws IOException {
