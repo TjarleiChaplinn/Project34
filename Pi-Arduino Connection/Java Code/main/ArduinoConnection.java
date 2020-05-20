@@ -3,8 +3,6 @@ package main;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.concurrent.TimeUnit;
-
 import com.fazecast.jSerialComm.SerialPort;
 
 public class ArduinoConnection {
