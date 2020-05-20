@@ -16,10 +16,15 @@ public class BonDataTransfer extends Thread {
 	
 	String[] dataArray = new String[12];
 	
-	public BonDataTransfer(ArduinoConnection connection, String adres, String plaats, String bedrag, String bericht, String transnr, String rekening, String devicenr, boolean permission) {
-		
+	public BonDataTransfer(ArduinoConnection connection, boolean permission) {
+		for(String array : dataArray){
+			array = "";
+		}
 		this.connection = connection;
-		
+		this.permission = permission;
+	}
+
+	public void setData(String adres, String plaats, String bedrag, String bericht, String transnr, String rekening, String devicenr) {
 		Calendar cal = Calendar.getInstance();
 		int day = cal.get(Calendar.DAY_OF_MONTH);
 		int month = cal.get(Calendar.MONTH) + 1;
@@ -44,7 +49,7 @@ public class BonDataTransfer extends Thread {
 		if(timeMinuteStr.length() == 1) {
 			timeMinuteStr = "0" + timeMinuteStr;
 		}
-		
+
 		dataArray[0] = adres;
 		dataArray[1] = plaats;
 		dataArray[2] = bedrag;
@@ -57,10 +62,8 @@ public class BonDataTransfer extends Thread {
 		dataArray[9] = yearStr;
 		dataArray[10] = timeHourStr;
 		dataArray[11] = timeMinuteStr;
-		
-		this.permission = permission;
 	}
-	
+
 	public void run() {
 		while(!kill) {
 			while(!permission || !connection.permission) { 
