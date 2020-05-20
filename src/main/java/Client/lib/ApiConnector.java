@@ -18,8 +18,8 @@ public class ApiConnector {
     private String message;
     private boolean verification;
 
-    private String originCountry;
-    private String originBank;
+    private String originCountry = "SU";
+    private String originBank = "BANK";
     private String receiveCountry;
     private String receiveBank;
 
@@ -61,16 +61,18 @@ public class ApiConnector {
         }
     }
 
-    public void makeWithdraw(double amount) throws IOException {
+    public void makeWithdraw(String account, String pin, Float amount) throws IOException {
         JSONObject json = new JSONObject();
-        json.put("balance", amount);
-        basicRequest("PUT", "/user", json.toString());
+        json.put("amount", amount);
+        json.put("pin", pin);
+        json.put("account", account);
+        basicRequest("PUT", "/user/withdraw", json.toString());
     }
 
     protected JSONObject basicRequest(String method, String endpoint, String content) throws IOException {
         Request.Builder requestBuilder = new Request.Builder()
-//                .header("originCountry", originCountry)
-//                .header("originBank", originBank)
+                .header("originCountry", originCountry)
+                .header("originBank", originBank)
 //                .header("receiveCountry", receiveCountry)
 //                .header("receiveBank", receiveBank)
                 .header("X-ApiKey", apiKey)
@@ -118,11 +120,19 @@ public class ApiConnector {
                     String error = json.getString("message");
                     message = error;
                     verification = false;
-                    if (error.equals("Pas is geblokkeerd")) {
-                        System.out.println(error);
-                    } else {
-                        System.out.println(error);
-                    }
+                    System.out.println(error);
+                    return new JSONObject(responseString);
+                case 402:
+                    JSONObject json1 = new JSONObject(responseString);
+                    String error1 = json1.getString("message");
+                    message = error1;
+                    System.out.println(error1);
+                    return new JSONObject(responseString);
+                case 403:
+                    JSONObject json2 = new JSONObject(responseString);
+                    String error2 = json2.getString("message");
+                    message = error2;
+                    System.out.println(error2);
                     return new JSONObject(responseString);
                 default:
                     throw new IOException();
