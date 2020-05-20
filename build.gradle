@@ -40,6 +40,9 @@ dependencies {
     // OkHTTPClient
     implementation 'com.squareup.okhttp3:okhttp:4.4.0'
 
+    // JSerialComm
+    compile group: 'com.fazecast', name: 'jSerialComm', version: '2.6.2'
+
     //JSON
     compile 'org.json:json:20190722'
 
