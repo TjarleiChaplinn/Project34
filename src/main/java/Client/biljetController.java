@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -19,16 +20,18 @@ import static java.lang.Integer.valueOf;
 
 public class biljetController implements Initializable {
 
-    public int nvijf=0;
-    public int ntien=0;
-    public int nvijftig=0;
-
     @FXML
     Button een;
     @FXML
     Button twee;
     @FXML
     Button drie;
+    @FXML
+    Button een1;
+    @FXML
+    Button twee1;
+    @FXML
+    Button drie1;
     @FXML
     Button stop;
     @FXML
@@ -43,24 +46,56 @@ public class biljetController implements Initializable {
     Text vijftig;
     @FXML
     Text totaal;
+    @FXML
+    TextField saldo;
 
     public void vijf(){
-        nvijf++;
+        if(App.nvijf<App.aantalVijf){
+        App.nvijf++;
         App.totaalbedrag+=5;
-        vijf.setText("x "+nvijf);
+        vijf.setText("x "+App.nvijf);
         totaal.setText("Totaal: RUB "+App.totaalbedrag);
+        }
     }
     public void tien(){
-        ntien++;
-        App.totaalbedrag+=10;
-        tien.setText("x "+ntien);
-        totaal.setText("Totaal: RUB "+App.totaalbedrag);
+        if(App.ntien<App.aantalTien) {
+            App.ntien++;
+            App.totaalbedrag += 10;
+            tien.setText("x " + App.ntien);
+            totaal.setText("Totaal: RUB " + App.totaalbedrag);
+        }
     }
     public void vijftig(){
-        nvijftig++;
-        App.totaalbedrag+=50;
-        vijftig.setText("x "+nvijftig);
-        totaal.setText("Totaal: RUB "+App.totaalbedrag);
+        if(App.nvijftig<App.aantalVijftig) {
+            App.nvijftig++;
+            App.totaalbedrag += 50;
+            vijftig.setText("x " + App.nvijftig);
+            totaal.setText("Totaal: RUB " + App.totaalbedrag);
+        }
+    }
+    public void minvijf(){
+        if(App.nvijf>0) {
+            App.nvijf--;
+            App.totaalbedrag += -5;
+            vijf.setText("x " + App.nvijf);
+            totaal.setText("Totaal: RUB " + App.totaalbedrag);
+        }
+    }
+    public void mintien(){
+        if(App.ntien>0) {
+            App.ntien--;
+            App.totaalbedrag += -10;
+            tien.setText("x " + App.ntien);
+            totaal.setText("Totaal: RUB " + App.totaalbedrag);
+        }
+    }
+    public void minvijftig(){
+        if(App.nvijftig>0) {
+            App.nvijftig--;
+            App.totaalbedrag += -50;
+            vijftig.setText("x " + App.nvijftig);
+            totaal.setText("Totaal: RUB " + App.totaalbedrag);
+        }
     }
 
     public void menu(ActionEvent event) throws IOException {
@@ -107,5 +142,6 @@ public class biljetController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         App.setNul();
+        saldo.setText(App.balance);
     }
 }

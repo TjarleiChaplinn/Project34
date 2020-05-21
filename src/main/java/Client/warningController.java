@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,7 +23,9 @@ public class warningController implements Initializable {
     @FXML
     TextField saldo;
     @FXML
-    Button exit;
+    Button stop;
+    @FXML
+    Text warningtext;
 
     public void stop(ActionEvent event) throws IOException {
         App.setNul();
@@ -47,5 +50,6 @@ public class warningController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         saldo.setText(App.balance);
+        warningtext.setText(App.warning);
     }
 }

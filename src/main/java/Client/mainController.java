@@ -26,7 +26,7 @@ public class mainController implements Initializable {
     @FXML
     TextField saldo;
     @FXML
-    Button exit;
+    Button stop;
 
     public void pinPage(ActionEvent event) throws IOException {
         Parent signupParent = FXMLLoader.load(getClass().getResource("/biljet.fxml"));
@@ -42,8 +42,11 @@ public class mainController implements Initializable {
     }
     public void snelPin(ActionEvent event) throws IOException {
         if (valueOf(App.balance) >= 70) {
+            if(App.aantalVijftig>=1||App.aantalTien>=2){
             App.setNul();
-            App.totaalbedrag += 70;
+            App.totaalbedrag = 70;
+            App.nvijftig=1;
+            App.ntien=2;
             Parent signupParent = FXMLLoader.load(getClass().getResource("/end.fxml"));
             Scene signupScene = new Scene(signupParent);
 
@@ -53,7 +56,20 @@ public class mainController implements Initializable {
             window.setScene(signupScene);
 
             window.show();
+        }else{
+                App.warning="Te weinig geld in automaat";
+                Parent signupParent = FXMLLoader.load(getClass().getResource("/warning.fxml"));
+                Scene signupScene = new Scene(signupParent);
+
+                //This line gets the Stage information
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                window.setScene(signupScene);
+
+                window.show();
+            }
         } else {
+            App.warning="Te weinig balans";
             Parent signupParent = FXMLLoader.load(getClass().getResource("/warning.fxml"));
             Scene signupScene = new Scene(signupParent);
 

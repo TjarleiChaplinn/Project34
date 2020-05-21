@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,6 +38,28 @@ public class endController implements Initializable {
 
     }
     public void stop(ActionEvent event) throws IOException {
+        Parent signupParent = FXMLLoader.load(getClass().getResource("/idle.fxml"));
+        Scene signupScene = new Scene(signupParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(signupScene);
+        window.show();
+    }
+    public void pin(ActionEvent event) throws IOException {
+        App.apiConnector.makeWithdraw("1", "8459", (float)(App.totaalbedrag));
+        FileWriter writer = new FileWriter("./src/main/resources/data.txt");
+        App.aantalVijf+=-App.nvijf;
+        App.aantalTien+=-App.ntien;
+        App.aantalVijftig+=-App.nvijftig;
+        writer.write(String.valueOf(App.aantalVijf)+"\n");
+        writer.write(String.valueOf(App.aantalTien)+"\n");
+        writer.write(String.valueOf(App.aantalVijftig));
+        writer.close();
+        App.totaalbedrag=0;
+        App.nvijf=0;
+        App.ntien=0;
+        App.nvijftig=0;
+
         Parent signupParent = FXMLLoader.load(getClass().getResource("/idle.fxml"));
         Scene signupScene = new Scene(signupParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

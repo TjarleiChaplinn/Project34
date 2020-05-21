@@ -32,7 +32,7 @@ public class loginController implements Initializable {
     public void menu(ActionEvent event) throws IOException {
         String password = pin.getText();
         try {
-            App.apiConnector = new ApiConnector("test", password, false);
+            App.apiConnector = new ApiConnector("1", password, false);
             if (App.apiConnector.verifyPin("1", password)==true){
                 App.balance=App.apiConnector.getBalance("1", password);
                 Parent signupParent = FXMLLoader.load(getClass().getResource("/main.fxml"));
