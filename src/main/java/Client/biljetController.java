@@ -141,6 +141,12 @@ public class biljetController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        App.nvijf=0;
+        App.ntien=0;
+        App.nvijftig=0;
+        vijf.setText("x " + App.nvijf);
+        tien.setText("x " + App.ntien);
+        vijftig.setText("x " + App.nvijftig);
         App.setNul();
         saldo.setText(App.balance);
     }

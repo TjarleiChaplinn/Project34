@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -24,7 +25,15 @@ public class endController implements Initializable {
     @FXML
     Button stop;
     @FXML
+    Button bon;
+    @FXML
     Text bedrag2;
+    @FXML
+    Text bedrag1;
+    @FXML
+    TextField saldo;
+
+    boolean bonPrinten=false;
 
     public void menu(ActionEvent event) throws IOException {
         Parent signupParent = FXMLLoader.load(getClass().getResource("/main.fxml"));
@@ -44,6 +53,15 @@ public class endController implements Initializable {
 
         window.setScene(signupScene);
         window.show();
+    }
+    public void bon(ActionEvent event) throws IOException {
+        if(bonPrinten==false) {
+            bonPrinten=true;
+            bedrag1.setText("Bon printen \u2713");
+        }else{
+            bonPrinten=false;
+            bedrag1.setText("Bon printen \u274C");
+        }
     }
     public void pin(ActionEvent event) throws IOException {
         App.apiConnector.makeWithdraw("1", "8459", (float)(App.totaalbedrag));
@@ -71,5 +89,7 @@ public class endController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         bedrag2.setText("RUB: "+App.totaalbedrag);
+        saldo.setText(App.balance);
+        bedrag1.setText("Bon printen \u274C");
     }
 }
