@@ -4,8 +4,13 @@
 package Client;
 
 
+import Client.arduinoConnection.ArduinoConnection;
+import Client.arduinoConnection.BonDataTransfer;
+import Client.arduinoConnection.KeypadDataTransfer;
+import Client.arduinoConnection.RFIDDataTransfer;
 import Client.lib.ApiConnector;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,19 +18,19 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class App extends Application {
     public File file = new File("./src/main/resources/data.txt");
     public Scanner scanner;
-    {
-        try {
-            scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+
+    static ArduinoConnection connection = new ArduinoConnection();
+    static BonDataTransfer bon = new BonDataTransfer(connection, "658", "Wijnhaven 107", "Rotterdam", false);
+    static KeypadDataTransfer keypad = new KeypadDataTransfer(connection, false);
+    public static RFIDDataTransfer rfid = new RFIDDataTransfer(connection, false);
 
     static public int totaalbedrag=0;
     static public String balance="0";
@@ -41,16 +46,56 @@ public class App extends Application {
     public App() throws URISyntaxException {
     }
 
+    public static Stage primaryStage = null;
+
     //    @Override
+
+    public static void gotoIdle(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Parent signupParent = FXMLLoader.load(getClass().getResource("/idle.fxml"));
+                    Scene signupScene = new Scene(signupParent);
+                    App.primaryStage.setScene(signupScene);
+                    App.primaryStage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     public void start(Stage primaryStage) throws Exception {
 
+        this.primaryStage = primaryStage;
+        try{
+            connection.ports.openPort();
+            bon.setName("Bon Thread");
+            keypad.setName("Keypad Thread");
+            rfid.setName("RFID Thread");
+            bon.start();
+            keypad.start();
+            rfid.start();
+            scanner = new Scanner(file);
+        } catch (NullPointerException | FileNotFoundException e) {
+            System.out.println("Ports couldn't be opened.");
+            System.exit(0);
+        }
+
+        TimeUnit.SECONDS.sleep(3);
 
         // Parent root = FXMLLoader.load(getClass().getResource("/HomeOld.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/idle.fxml"));
 
-        primaryStage.setTitle("ATM");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+
+
+        this.primaryStage.setOnCloseRequest(e->{
+            Platform.exit();
+            bon.killThread();
+            keypad.killThread();
+            rfid.killThread();
+            System.exit(0);
+        });
 
 
         aantalVijf = Integer.parseInt(scanner.nextLine());
@@ -59,6 +104,12 @@ public class App extends Application {
         System.out.println(aantalVijf);
         System.out.println(aantalTien);
         System.out.println(aantalVijftig);
+
+        Parent root = FXMLLoader.load(getClass().getResource("/idle.fxml"));
+
+        this.primaryStage.setTitle("ATM");
+        this.primaryStage.setScene(new Scene(root));
+        this.primaryStage.show();
     }
 
     public static void main(String[] args) {

@@ -1,6 +1,13 @@
 package Client.arduinoConnection;
 
+import Client.App;
 import Client.arduinoConnection.ArduinoConnection;
+import Client.idleController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+
+import java.io.IOException;
 
 public class RFIDDataTransfer extends Thread {
 
@@ -15,6 +22,9 @@ public class RFIDDataTransfer extends Thread {
 		this.permission = permission;
 		this.connection = connection;
 	}
+
+	public String getScannedCard(){return scannedCard;}
+
 	
 	public void run() {
 		while(!kill) {
@@ -32,7 +42,7 @@ public class RFIDDataTransfer extends Thread {
 			} catch(Exception e) {
 				System.out.println("Data niet aangekomen.");
 			}
-			
+
 			connection.permission = true;
 			permission = false;
 		}

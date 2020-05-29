@@ -7,6 +7,7 @@ void getDataForArray(char arrayName[]);
 void setup() {
   Wire.begin();
   Serial.begin(9600);
+  pinMode(5, OUTPUT);
 }
 
 char getData() {
@@ -22,13 +23,15 @@ char getData() {
 void loop() {
   char temp = getData();
   if (temp == '1') {
+    digitalWrite(5, HIGH);
     char c = '-';
     while (c == '-') {
-      Wire.requestFrom(10, 1);
+      Wire.requestFrom(8, 1);
       while (Wire.available()) {
         c = Wire.read();
       }
     }
+    digitalWrite(5, LOW);
     Serial.write(c);
   }
   else if (temp == '2') {

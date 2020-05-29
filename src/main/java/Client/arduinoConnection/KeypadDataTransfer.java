@@ -1,11 +1,25 @@
 package Client.arduinoConnection;
 
+import Client.App;
 import Client.arduinoConnection.ArduinoConnection;
+import javafx.scene.Scene;
+import javafx.stage.Window;
+
+import java.util.Arrays;
 
 public class KeypadDataTransfer extends Thread {
-	
+
+	public String keypadInput = "";
+	public String pincode = "";
+
 	private boolean kill = false;
-	
+
+	public boolean pin = true;
+	public boolean hasInput = false;
+
+	String[] numbers = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+	String[] symbols = {"*", "#"};
+
 	private ArduinoConnection connection = null;
 	public boolean permission = false;
 	
@@ -20,65 +34,53 @@ public class KeypadDataTransfer extends Thread {
 				if(kill) {return;}
 				try {sleep(10);} catch (InterruptedException e) {}
 			}
-			
+
+			System.out.println("Keypad Started");
+
 			connection.permission = false;
 			
 			do {
 				try {
 					connection.sendData("1");
 					String temp = connection.getData();
-					switch(temp) {
-					case "1":
-						System.out.println(1);
-						break;
-					case "2":
-						System.out.println(2);
-						break;
-					case "3":
-						System.out.println(3);
-						break;
-					case "4":
-						System.out.println(4);
-						break;
-					case "5":
-						System.out.println(5);
-						break;
-					case "6":
-						System.out.println(6);
-						break;
-					case "7":
-						System.out.println(7);
-						break;
-					case "8":
-						System.out.println(8);
-						break;
-					case "9":
-						System.out.println(9);
-						break;
-					case "0":
-						System.out.println(0);
-						break;
-					case "A":
-						System.out.println("A");
-						break;
-					case "B":
-						System.out.println("B");
-						break;
-					case "C":
-						System.out.println("C");
-						break;
-					case "D":
-						System.out.println("D");
-						break;
-					case "*":
-						System.out.println("*");
-						break;
-					case "#":
-						System.out.println("#");
-						permission = false;
-						break;
+					hasInput = true;
+					boolean onlyNumbers = Arrays.stream(numbers).anyMatch(temp::equals);
+					if(pin && onlyNumbers){
+						Client.loginController.addKey();
+						pincode += temp;
 					}
+					else {
+						char tempChar = temp.charAt(0);
+						if(tempChar == '#') {
+							System.out.println("Goto idle");
+							if(Client.loginController.currentThread().isAlive()) {
+								Client.loginController.runThread = false;
+							}
+							Client.App.rfid.scannedCard = "";
+							pincode = "";
+							keypadInput = "";
+							hasInput = false;
+							permission = false;
+							connection.permission = true;
+							App.gotoIdle();
+							return;
+						}
+						else if(tempChar == '*'){
+							for(int i = 0; i < pincode.length(); i++){
+								Client.loginController.removeKey();
+							}
+							pincode = "";
+						}
+						else if(tempChar == 'A'){
+
+						}
+					}
+					sleep(10);
+					keypadInput = temp;
+					System.out.println("Pincode : " + pincode);
+					System.out.println("keypadInput : " + keypadInput);
 				} catch (Exception e) {
+					e.printStackTrace();
 					System.out.println("Data niet aangekomen.");
 				}
 			} while(permission);
