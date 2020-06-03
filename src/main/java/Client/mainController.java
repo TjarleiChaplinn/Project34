@@ -28,7 +28,7 @@ public class mainController implements Initializable {
     @FXML
     Button stop;
     @FXML
-    Button saldoscherm;
+    Button saldoScherm;
 
     public void pinPage(ActionEvent event) throws IOException {
         Parent signupParent = FXMLLoader.load(getClass().getResource("/biljet.fxml"));
