@@ -27,6 +27,8 @@ public class mainController implements Initializable {
     TextField saldo;
     @FXML
     Button stop;
+    @FXML
+    Button saldoscherm;
 
     public void pinPage(ActionEvent event) throws IOException {
         Parent signupParent = FXMLLoader.load(getClass().getResource("/biljet.fxml"));
@@ -84,6 +86,14 @@ public class mainController implements Initializable {
 
     public void stop(ActionEvent event) throws IOException {
         Parent signupParent = FXMLLoader.load(getClass().getResource("/idle.fxml"));
+        Scene signupScene = new Scene(signupParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(signupScene);
+        window.show();
+    }
+    public void saldo(ActionEvent event) throws IOException {
+        Parent signupParent = FXMLLoader.load(getClass().getResource("/saldo.fxml"));
         Scene signupScene = new Scene(signupParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
