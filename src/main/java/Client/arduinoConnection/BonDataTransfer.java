@@ -1,5 +1,6 @@
 package Client.arduinoConnection;
 
+import Client.App;
 import Client.arduinoConnection.ArduinoConnection;
 
 import java.util.Calendar;
@@ -77,22 +78,26 @@ public class BonDataTransfer extends Thread {
 			connection.permission = false;
 			
 			connection.sendData("2");
-			
-			do {
-				try {
-					while (dataArrayIndex < dataArray.length) {
-						connection.getData();
-						connection.sendData(dataArray[dataArrayIndex++]);
-					}
-					permission = false;
-					dataArrayIndex = 0;
-					connection.permission = true;
-				} catch (Exception e) {
-					System.out.println("Data niet aangekomen.");
+
+			try {
+				while (dataArrayIndex < dataArray.length) {
+					connection.getData();
+					connection.sendData(dataArray[dataArrayIndex++]);
 				}
-			} while(permission);
+				permission = false;
+				dataArrayIndex = 0;
+				connection.permission = true;
+			} catch (Exception e) {
+				System.out.println("Data niet aangekomen.");
+			}
+
+			dataArray[2] = "";
+			dataArray[3] = "";
+			dataArray[4] = "";
+			dataArray[5] = "";
+			App.gotoIdle();
 		}
-		
+		System.out.println(currentThread().getName() + " Closed");
 	}
 	
 	public void killThread() {

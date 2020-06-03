@@ -78,7 +78,7 @@ void printBon() {
   printer.boldOn();
   String tijd = gegevens[7] + "/" + gegevens[8] + "/"  + gegevens[9] + "  " + gegevens[10] + ":" + gegevens[11];
   printer.println(tijd);
-  String addressFull = gegevens[0] + ", " + gegevens[2];
+  String addressFull = gegevens[0] + ", " + gegevens[1];
   printer.println(addressFull);
   String devicenrFull = "Automaat nummer: " + gegevens[6];
   printer.println(devicenrFull);
@@ -88,7 +88,7 @@ void printBon() {
   printer.justify('L');
   String transFull = "Transactie nr.: " + gegevens[4];
   printer.println(transFull);
-  String rekeningFull = "Rekening: " + gegevens[5] + "** **** **";
+  String rekeningFull = "Rekening: " + gegevens[5];
   printer.println(rekeningFull);
 
   printer.justify('C');

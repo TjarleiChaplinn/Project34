@@ -14,12 +14,12 @@
       <TextFlow layoutX="356.0" layoutY="120.0" prefHeight="91.0" prefWidth="200.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" width="105.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="80.0" layoutY="320.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
-      <Button fx:id="stop" ellipsisString="dsa" layoutX="534.0" layoutY="340.0" mnemonicParsing="false" onAction="#stop" prefHeight="40.0" prefWidth="40.0" text="#">
+      <Button fx:id="stop" ellipsisString="dsa" layoutX="534.0" layoutY="340.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="#">
          <effect>
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>
       </Button>
-      <Button fx:id="menu" ellipsisString="dsa" layoutX="33.0" layoutY="280.0" mnemonicParsing="false" onAction="#menu" prefHeight="40.0" prefWidth="40.0" text="*">
+      <Button fx:id="menu" ellipsisString="dsa" layoutX="33.0" layoutY="280.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="*">
          <effect>
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>
@@ -64,7 +64,7 @@
             <Font name="Arial" size="20.0" />
          </font>
       </Text>
-      <Button fx:id="pin" ellipsisString="dsa" layoutX="33.0" layoutY="180.0" mnemonicParsing="false" onAction="#pin" prefHeight="40.0" prefWidth="40.0" text="D">
+      <Button fx:id="pin" ellipsisString="dsa" layoutX="33.0" layoutY="180.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="D">
          <effect>
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>
@@ -85,17 +85,17 @@
          </font>
       </Text>
       <TextField fx:id="saldo" layoutX="196.0" layoutY="358.0" promptText="€" text="geld" />
-      <Button fx:id="een1" ellipsisString="dsa" layoutX="33.0" layoutY="21.0" mnemonicParsing="false" onAction="#minvijf" prefHeight="40.0" prefWidth="40.0" text="3">
+      <Button fx:id="een1" ellipsisString="dsa" layoutX="33.0" layoutY="21.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="3">
          <effect>
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>
       </Button>
-      <Button fx:id="twee1" ellipsisString="dsa" layoutX="33.0" layoutY="74.0" mnemonicParsing="false" onAction="#mintien" prefHeight="40.0" prefWidth="40.0" text="6">
+      <Button fx:id="twee1" ellipsisString="dsa" layoutX="33.0" layoutY="74.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="6">
          <effect>
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>
       </Button>
-      <Button fx:id="drie1" ellipsisString="dsa" layoutX="33.0" layoutY="125.0" mnemonicParsing="false" onAction="#minvijftig" prefHeight="40.0" prefWidth="40.0" text="9">
+      <Button fx:id="drie1" ellipsisString="dsa" layoutX="33.0" layoutY="125.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="9">
          <effect>
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>
@@ -130,17 +130,17 @@
             <Font size="23.0" />
          </font>
       </Text>
-      <Button fx:id="drie" ellipsisString="dsa" layoutX="242.0" layoutY="125.0" mnemonicParsing="false" onAction="#vijftig" prefHeight="40.0" prefWidth="40.0" text="C">
+      <Button fx:id="drie" ellipsisString="dsa" layoutX="242.0" layoutY="125.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="C">
          <effect>
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>
       </Button>
-      <Button fx:id="twee" ellipsisString="dsa" layoutX="242.0" layoutY="72.0" mnemonicParsing="false" onAction="#tien" prefHeight="40.0" prefWidth="40.0" text="B">
+      <Button fx:id="twee" ellipsisString="dsa" layoutX="242.0" layoutY="72.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="B">
          <effect>
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>
       </Button>
-      <Button fx:id="een" ellipsisString="dsa" layoutX="242.0" layoutY="21.0" mnemonicParsing="false" onAction="#vijf" prefHeight="40.0" prefWidth="40.0" text="A">
+      <Button fx:id="een" ellipsisString="dsa" layoutX="242.0" layoutY="21.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="A">
          <effect>
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>

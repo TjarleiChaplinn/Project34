@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,17 +21,6 @@ public class idleController extends Thread implements Initializable {
 
     @FXML
     Button start;
-
-    public void start(ActionEvent event) throws IOException {
-        Parent signupParent = FXMLLoader.load(getClass().getResource("/login.fxml"));
-        Scene signupScene = new Scene(signupParent);
-
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(signupScene);
-        window.show();
-    }
 
     public void run(){
         boolean temp = true;
@@ -45,7 +35,11 @@ public class idleController extends Thread implements Initializable {
                     @Override
                     public void run() {
                         try {
-                            Parent signupParent = FXMLLoader.load(getClass().getResource("/login.fxml"));
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
+                            Parent signupParent = loader.load();
+
+                            App.loginController = (loginController)loader.getController();
+
                             Scene signupScene = new Scene(signupParent);
                             App.primaryStage.setScene(signupScene);
                             App.primaryStage.show();
@@ -63,6 +57,7 @@ public class idleController extends Thread implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         App.rfid.permission = true;
+        App.scene = "idle";
         Thread thread = new idleController();
         thread.setName("Idle Thread");
         thread.start();

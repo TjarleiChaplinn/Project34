@@ -27,28 +27,10 @@ public class warningController implements Initializable {
     @FXML
     Text warningtext;
 
-    public void stop(ActionEvent event) throws IOException {
-        App.setNul();
-        Parent signupParent = FXMLLoader.load(getClass().getResource("/idle.fxml"));
-        Scene signupScene = new Scene(signupParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(signupScene);
-        window.show();
-    }
-    public void menu(ActionEvent event) throws IOException {
-        App.setNul();
-        Parent signupParent = FXMLLoader.load(getClass().getResource("/main.fxml"));
-        Scene signupScene = new Scene(signupParent);
-
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(signupScene);
-        window.show();
-    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        App.scene = "warning";
+        App.keypad.permission = true;
         saldo.setText(App.balance);
         warningtext.setText(App.warning);
     }

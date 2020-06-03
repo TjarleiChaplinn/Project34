@@ -36,7 +36,7 @@ void setup() {
 }
 
 void loop() {
-  if (!requestData) {
+  if(!requestData){
     return;
   }
   rfid_tag_present_prev = rfid_tag_present;
@@ -72,7 +72,10 @@ void loop() {
     dataArrayToChar();
     requestData = false;
   }
+  rfidEndRead(mfrc522);
 }
+
+void rfidEndRead(const MFRC522& reader) { reader.PICC_HaltA(); reader.PCD_StopCrypto1(); }
 
 void dataArrayToChar(){
   for(int i = 0; i < ARRAY_CHAR_LENGTH; i++){
@@ -106,8 +109,8 @@ int readBlock(int blockNumber, byte arrayAddress[])
   byte status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, trailerBlock, &key, &(mfrc522.uid));
 
   if (status != MFRC522::STATUS_OK) {
-//    Serial.print("PCD_Authenticate() failed (read): ");
-//    Serial.println(mfrc522.GetStatusCodeName(status));
+    Serial.print("PCD_Authenticate() failed (read): ");
+    Serial.println(mfrc522.GetStatusCodeName(status));
     return 3;//return "3" as error message
   }
 
@@ -115,9 +118,9 @@ int readBlock(int blockNumber, byte arrayAddress[])
   byte buffersize = 18;//we need to define a variable with the read buffer size, since the MIFARE_Read method below needs a pointer to the variable that contains the size...
   status = mfrc522.MIFARE_Read(blockNumber, arrayAddress, &buffersize);//&buffersize is a pointer to the buffersize variable; MIFARE_Read requires a pointer instead of just a number
   if (status != MFRC522::STATUS_OK) {
-//    Serial.print("MIFARE_read() failed: ");
-//    Serial.println(mfrc522.GetStatusCodeName(status));
+    Serial.print("MIFARE_read() failed: ");
+    Serial.println(mfrc522.GetStatusCodeName(status));
     return 4;//return "4" as error message
   }
-//  Serial.println("block was read");
+  Serial.println("block was read");
 }

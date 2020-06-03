@@ -15,8 +15,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class endController implements Initializable {
+
+    private boolean print = false;
+
     @FXML
     Button end;
     @FXML
@@ -26,50 +30,60 @@ public class endController implements Initializable {
     @FXML
     Text bedrag2;
 
-    public void menu(ActionEvent event) throws IOException {
-        Parent signupParent = FXMLLoader.load(getClass().getResource("/main.fxml"));
-        Scene signupScene = new Scene(signupParent);
-
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(signupScene);
-        window.show();
-
+    public void switchPrint(){
+        print = !print;
+        System.out.println(print);
     }
-    public void stop(ActionEvent event) throws IOException {
-        Parent signupParent = FXMLLoader.load(getClass().getResource("/idle.fxml"));
-        Scene signupScene = new Scene(signupParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        window.setScene(signupScene);
-        window.show();
-    }
-    public void pin(ActionEvent event) throws IOException {
-        App.apiConnector.makeWithdraw("1", "8459", (float)(App.totaalbedrag));
-        FileWriter writer = new FileWriter("./src/main/resources/data.txt");
-        App.aantalVijf+=-App.nvijf;
-        App.aantalTien+=-App.ntien;
-        App.aantalVijftig+=-App.nvijftig;
-        writer.write(String.valueOf(App.aantalVijf)+"\n");
-        writer.write(String.valueOf(App.aantalTien)+"\n");
-        writer.write(String.valueOf(App.aantalVijftig));
-        writer.close();
+    public void doTransaction() {
+        try {
+            App.apiConnector.makeWithdraw("1", App.keypad.pincode, (float)(App.totaalbedrag));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(print){
+            App.keypad.permission = false;
+            App.bon.setData(String.valueOf(App.totaalbedrag), "U heeft geld opgenomen.", "0123" /*Aanpassen naar dynamisch nummer*/, App.rfid.scannedCard.substring(0, 10) + "******");
+            System.out.println("Nu printen!");
+            App.bon.permission = true;
+        }
+
+        App.aantalVijf-=App.nvijf;
+        App.aantalTien-=App.ntien;
+        App.aantalVijftig-=App.nvijftig;
+
         App.totaalbedrag=0;
         App.nvijf=0;
         App.ntien=0;
         App.nvijftig=0;
 
-        Parent signupParent = FXMLLoader.load(getClass().getResource("/idle.fxml"));
-        Scene signupScene = new Scene(signupParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            FileWriter writer = new FileWriter("./src/main/resources/data.txt");
+            writer.write(String.valueOf(App.aantalVijf)+"\n");
+            writer.write(String.valueOf(App.aantalTien)+"\n");
+            writer.write(String.valueOf(App.aantalVijftig));
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        window.setScene(signupScene);
-        window.show();
+        App.keypad.pincode = "";
+        App.rfid.scannedCard = "";
+
+        App.keypad.permission = false;
+
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        App.gotoIdle();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        App.scene = "end";
+        App.keypad.permission = true;
         bedrag2.setText("RUB: "+App.totaalbedrag);
     }
 }

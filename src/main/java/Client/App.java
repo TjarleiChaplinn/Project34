@@ -23,7 +23,10 @@ import java.net.URISyntaxException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Integer.valueOf;
+
 public class App extends Application {
+
     public File file = new File("./src/main/resources/data.txt");
     public Scanner scanner;
 
@@ -32,36 +35,114 @@ public class App extends Application {
     static KeypadDataTransfer keypad = new KeypadDataTransfer(connection, false);
     public static RFIDDataTransfer rfid = new RFIDDataTransfer(connection, false);
 
-    static public int totaalbedrag=0;
-    static public String balance="0";
+    static public int totaalbedrag = 0;
+    static public String balance = "0";
     public static ApiConnector apiConnector;
-    static public int aantalVijf=0;
-    static public int aantalTien=0;
-    static public int aantalVijftig=0;
-    static public int nvijf=0;
-    static public int ntien=0;
-    static public int nvijftig=0;
-    static public String warning="error";
+    static public int aantalVijf = 0;
+    static public int aantalTien = 0;
+    static public int aantalVijftig = 0;
+    static public int nvijf = 0;
+    static public int ntien = 0;
+    static public int nvijftig = 0;
+    static public String warning = "error";
 
     public App() throws URISyntaxException {
     }
 
+    public static String scene = "";
     public static Stage primaryStage = null;
+    public static loginController loginController = null;
+    public static mainController mainController = null;
+    public static endController endController = null;
+    public static biljetController biljetController = null;
+    public static warningController warningController = null;
+    public static idleController idleController = null;
 
     //    @Override
 
-    public static void gotoIdle(){
+    public static void gotoMainScene() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                App.setNul();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/main.fxml"));
+                Parent signupParent = null;
                 try {
-                    Parent signupParent = FXMLLoader.load(getClass().getResource("/idle.fxml"));
-                    Scene signupScene = new Scene(signupParent);
-                    App.primaryStage.setScene(signupScene);
-                    App.primaryStage.show();
+                    signupParent = loader.load();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                App.mainController = (mainController) loader.getController();
+
+                Scene signupScene = new Scene(signupParent);
+                App.primaryStage.setScene(signupScene);
+                App.primaryStage.show();
+            }
+        });
+    }
+
+    public static void gotoEndScene() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/end.fxml"));
+                Parent signupParent = null;
+                try {
+                    signupParent = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                App.endController = (endController) loader.getController();
+
+                Scene signupScene = new Scene(signupParent);
+                App.primaryStage.setScene(signupScene);
+                App.primaryStage.show();
+            }
+        });
+    }
+
+    public static void gotoWarningScene(String warningText) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                App.warning = warningText;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/warning.fxml"));
+                Parent signupParent = null;
+                try {
+                    signupParent = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                App.warningController = (warningController) loader.getController();
+
+                Scene signupScene = new Scene(signupParent);
+                App.primaryStage.setScene(signupScene);
+                App.primaryStage.show();
+            }
+        });
+    }
+
+    public static void gotoIdle() {
+        App.setNul();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/idle.fxml"));
+                Parent signupParent = null;
+                try {
+                    signupParent = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                App.idleController = (idleController) loader.getController();
+
+                Scene signupScene = new Scene(signupParent);
+                App.primaryStage.setScene(signupScene);
+                App.primaryStage.show();
             }
         });
     }
@@ -69,7 +150,7 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         this.primaryStage = primaryStage;
-        try{
+        try {
             connection.ports.openPort();
             bon.setName("Bon Thread");
             keypad.setName("Keypad Thread");
@@ -88,8 +169,7 @@ public class App extends Application {
         // Parent root = FXMLLoader.load(getClass().getResource("/HomeOld.fxml"));
 
 
-
-        this.primaryStage.setOnCloseRequest(e->{
+        this.primaryStage.setOnCloseRequest(e -> {
             Platform.exit();
             bon.killThread();
             keypad.killThread();
@@ -109,14 +189,16 @@ public class App extends Application {
 
         this.primaryStage.setTitle("ATM");
         this.primaryStage.setScene(new Scene(root));
+        this.primaryStage.setAlwaysOnTop(true);
         this.primaryStage.show();
     }
 
     public static void main(String[] args) {
         launch();
     }
-    static public void setNul(){
-        totaalbedrag=0;
+
+    static public void setNul() {
+        totaalbedrag = 0;
     }
 }
 

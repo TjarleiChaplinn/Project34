@@ -49,48 +49,53 @@ public class biljetController implements Initializable {
     @FXML
     TextField saldo;
 
-    public void vijf(){
-        if(App.nvijf<App.aantalVijf){
-        App.nvijf++;
-        App.totaalbedrag+=5;
-        vijf.setText("x "+App.nvijf);
-        totaal.setText("Totaal: RUB "+App.totaalbedrag);
+    public void addFive() {
+        if (App.nvijf < App.aantalVijf) {
+            App.nvijf++;
+            App.totaalbedrag += 5;
+            vijf.setText("x " + App.nvijf);
+            totaal.setText("Totaal: RUB " + App.totaalbedrag);
         }
     }
-    public void tien(){
-        if(App.ntien<App.aantalTien) {
+
+    public void addTen() {
+        if (App.ntien < App.aantalTien) {
             App.ntien++;
             App.totaalbedrag += 10;
             tien.setText("x " + App.ntien);
             totaal.setText("Totaal: RUB " + App.totaalbedrag);
         }
     }
-    public void vijftig(){
-        if(App.nvijftig<App.aantalVijftig) {
+
+    public void addFifty() {
+        if (App.nvijftig < App.aantalVijftig) {
             App.nvijftig++;
             App.totaalbedrag += 50;
             vijftig.setText("x " + App.nvijftig);
             totaal.setText("Totaal: RUB " + App.totaalbedrag);
         }
     }
-    public void minvijf(){
-        if(App.nvijf>0) {
+
+    public void remFive() {
+        if (App.nvijf > 0) {
             App.nvijf--;
             App.totaalbedrag += -5;
             vijf.setText("x " + App.nvijf);
             totaal.setText("Totaal: RUB " + App.totaalbedrag);
         }
     }
-    public void mintien(){
-        if(App.ntien>0) {
+
+    public void remTen() {
+        if (App.ntien > 0) {
             App.ntien--;
             App.totaalbedrag += -10;
             tien.setText("x " + App.ntien);
             totaal.setText("Totaal: RUB " + App.totaalbedrag);
         }
     }
-    public void minvijftig(){
-        if(App.nvijftig>0) {
+
+    public void remFifty() {
+        if (App.nvijftig > 0) {
             App.nvijftig--;
             App.totaalbedrag += -50;
             vijftig.setText("x " + App.nvijftig);
@@ -98,49 +103,10 @@ public class biljetController implements Initializable {
         }
     }
 
-    public void menu(ActionEvent event) throws IOException {
-        Parent signupParent = FXMLLoader.load(getClass().getResource("/main.fxml"));
-        Scene signupScene = new Scene(signupParent);
-
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(signupScene);
-        window.show();
-    }
-    public void pin(ActionEvent event) throws IOException {
-        if (valueOf(App.balance) >= App.totaalbedrag) {
-        Parent signupParent = FXMLLoader.load(getClass().getResource("/end.fxml"));
-        Scene signupScene = new Scene(signupParent);
-
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(signupScene);
-
-        window.show();
-    } else {
-        Parent signupParent = FXMLLoader.load(getClass().getResource("/warning.fxml"));
-        Scene signupScene = new Scene(signupParent);
-
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(signupScene);
-
-        window.show();
-    }
-    }
-    public void stop(ActionEvent event) throws IOException {
-        Parent signupParent = FXMLLoader.load(getClass().getResource("/idle.fxml"));
-        Scene signupScene = new Scene(signupParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(signupScene);
-        window.show();
-    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        App.scene = "biljet";
+        App.keypad.permission = true;
         App.setNul();
         saldo.setText(App.balance);
     }
