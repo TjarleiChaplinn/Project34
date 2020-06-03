@@ -14,6 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -50,7 +51,6 @@ public class loginController implements Initializable {
             System.err.println("API connection error: " + e.getMessage());
         }
 
-
 //        if (counter == 3) {
 //            melding.setText("Pas geblokkeerd!");
 //        } else if(password=="1234"){
@@ -83,6 +83,16 @@ public class loginController implements Initializable {
             @Override
             public void run() {
                 pin.requestFocus();
+
+
+                try {
+                    Robot robot = new Robot();
+                    robot.keyPress('1');
+                    robot.keyRelease('1');
+
+                } catch (AWTException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

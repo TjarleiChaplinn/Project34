@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.waitController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="1080.0" stroke="TRANSPARENT" strokeType="INSIDE" width="300.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="300.0" layoutY="780.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1920.0" />
+      <Text fill="RED" fontSmoothingType="LCD" layoutX="110.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welkom bij de bank," wrappingWidth="200.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="260.0" fitWidth="265.0" layoutX="1640.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Pictures/soviet.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="info" fill="RED" fontSmoothingType="LCD" layoutX="335.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ERROR" wrappingWidth="508.0">
+         <font>
+            <Font name="Arial" size="35.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

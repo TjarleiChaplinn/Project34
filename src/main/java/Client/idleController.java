@@ -32,5 +32,9 @@ public class idleController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        App.totaalbedrag=0;
+        App.nvijf=0;
+        App.ntien=0;
+        App.nvijftig=0;
     }
 }

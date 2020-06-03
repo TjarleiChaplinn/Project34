@@ -73,10 +73,10 @@ public class endController implements Initializable {
         writer.write(String.valueOf(App.aantalTien)+"\n");
         writer.write(String.valueOf(App.aantalVijftig));
         writer.close();
-        App.totaalbedrag=0;
-        App.nvijf=0;
-        App.ntien=0;
-        App.nvijftig=0;
+        if(bonPrinten){
+            //App.bon.permission = true;
+        }
+
 
         Parent signupParent = FXMLLoader.load(getClass().getResource("/idle.fxml"));
         Scene signupScene = new Scene(signupParent);

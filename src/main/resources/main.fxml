@@ -69,5 +69,18 @@
             <Font size="20.0" />
          </font>
       </TextField>
+      <Button fx:id="saldo" ellipsisString="dsa" layoutX="107.0" layoutY="346.0" mnemonicParsing="false" onAction="#saldo" prefHeight="93.0" prefWidth="93.0" text="C">
+         <effect>
+            <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
+         </effect>
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Button>
+      <Text fill="RED" fontSmoothingType="LCD" layoutX="380.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saldo bekijken" wrappingWidth="290.8033447265625">
+         <font>
+            <Font name="Arial" size="35.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
