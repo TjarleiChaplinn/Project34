@@ -18,7 +18,7 @@ public class ApiConnector {
     private String message;
     private boolean verification;
 
-    private String originCountry = "SU";
+    private String originCountry = "SO";
     private String originBank = "BANK";
     private String receiveCountry;
     private String receiveBank;
@@ -33,7 +33,7 @@ public class ApiConnector {
         this.pin = pin;
         if (localhost) {
             this.httpClient = new OkHttpClient();
-            this.apiUrl = "http://localhost:8080";
+            this.apiUrl = "http://localhost:8082";
         } else {
             this.httpClient = secureHttpClient.build();
             this.apiUrl = "https://145.24.222.131:8080";
@@ -44,7 +44,13 @@ public class ApiConnector {
         JSONObject json = new JSONObject();
         json.put("pin", pin);
         json.put("account", account);
-        JSONObject json1 = basicRequest("PUT", "/user", json.toString());
+        if (account.substring(3,7).equals("BANK")) {
+            JSONObject json1 = basicRequest("PUT", "/user/verify", json.toString());
+        } else {
+//            json.put("country", account.substring(0,2));
+//            json.put("bank", account.substring(3,7));
+            JSONObject json1 = basicRequest("PUT", "/gosbank/balance", json.toString());
+        }
         return verification;
     }
 
@@ -66,13 +72,20 @@ public class ApiConnector {
         json.put("amount", amount);
         json.put("pin", pin);
         json.put("account", account);
-        basicRequest("PUT", "/user/withdraw", json.toString());
+
+        if (account.substring(3,7).equals("BANK")) {
+            JSONObject json1 = basicRequest("PUT", "/user/withdraw", json.toString());
+        } else {
+//            json.put("country", account.substring(0,2));
+//            json.put("bank", account.substring(3,7));
+            JSONObject json1 = basicRequest("PUT", "/gosbank/payment", json.toString());
+        }
     }
 
     protected JSONObject basicRequest(String method, String endpoint, String content) throws IOException {
         Request.Builder requestBuilder = new Request.Builder()
-                .header("originCountry", originCountry)
-                .header("originBank", originBank)
+//                .header("originCountry", originCountry)
+//                .header("originBank", originBank)
 //                .header("receiveCountry", receiveCountry)
 //                .header("receiveBank", receiveBank)
                 .header("X-ApiKey", apiKey)
