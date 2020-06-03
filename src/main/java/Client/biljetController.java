@@ -46,8 +46,6 @@ public class biljetController implements Initializable {
     Text vijftig;
     @FXML
     Text totaal;
-    @FXML
-    TextField saldo;
 
     public void addFive() {
         if (App.nvijf < App.aantalVijf) {
@@ -114,6 +112,5 @@ public class biljetController implements Initializable {
         tien.setText("x " + App.ntien);
         vijftig.setText("x " + App.nvijftig);
         App.setNul();
-        saldo.setText(App.balance);
     }
 }

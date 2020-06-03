@@ -34,7 +34,6 @@ public class ArduinoConnection {
 				word += (char)in.read();
 			}
 			in.close();
-			System.out.println("Received Data: " + word);
 			return word;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -50,6 +49,5 @@ public class ArduinoConnection {
 		
 		out.write(temp);
 		out.flush();
-		System.out.println("Data send: " + temp);
 	}
 }

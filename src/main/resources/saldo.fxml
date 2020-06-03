@@ -12,7 +12,7 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="1080.0" stroke="TRANSPARENT" strokeType="INSIDE" width="300.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="300.0" layoutY="780.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1920.0" />
-      <Button fx:id="stop" ellipsisString="dsa" layoutX="1700.0" layoutY="880.0" mnemonicParsing="false" onAction="#stop" prefHeight="93.0" prefWidth="93.0" text="#">
+      <Button fx:id="stop" ellipsisString="dsa" layoutX="1700.0" layoutY="880.0" mnemonicParsing="false" prefHeight="93.0" prefWidth="93.0" text="#">
          <effect>
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>
@@ -20,7 +20,7 @@
             <Font size="35.0" />
          </font>
       </Button>
-      <Button fx:id="menu" ellipsisString="dsa" layoutX="104.0" layoutY="616.0" mnemonicParsing="false" onAction="#menu" prefHeight="93.0" prefWidth="93.0" text="*">
+      <Button fx:id="menu" ellipsisString="dsa" layoutX="104.0" layoutY="616.0" mnemonicParsing="false" prefHeight="93.0" prefWidth="93.0" text="*">
          <effect>
             <ColorAdjust contrast="0.1" hue="0.33" saturation="1.0" />
          </effect>

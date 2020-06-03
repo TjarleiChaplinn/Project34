@@ -49,15 +49,23 @@ void getBonData() {
   }
 }
 
+char letterArray[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+
 void getRFIDData() {
   char dataArray[16];
-  dataArray[0] = '-';
-  while (dataArray[0] == '-') {
+  boolean tempBool = true;
+  while (tempBool) {
     int index = 0;
     Wire.requestFrom(0x3C, 16);
     while (Wire.available()) {
       dataArray[index] = Wire.read();
       index++;
+    }
+    for(int i = 0; i < 26; i++){
+      if(dataArray[0] == letterArray[i]){
+        tempBool = false;
+        break;
+      }
     }
     delay(10);
   }

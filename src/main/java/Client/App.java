@@ -19,11 +19,8 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
-import static java.lang.Integer.valueOf;
 
 public class App extends Application {
 
@@ -46,9 +43,6 @@ public class App extends Application {
     static public int nvijftig = 0;
     static public String warning = "error";
 
-    public App() throws URISyntaxException {
-    }
-
     public static String scene = "";
     public static Stage primaryStage = null;
     public static loginController loginController = null;
@@ -57,8 +51,8 @@ public class App extends Application {
     public static biljetController biljetController = null;
     public static warningController warningController = null;
     public static idleController idleController = null;
-
-    //    @Override
+    public static waitController waitController = null;
+    public static saldoController saldoController = null;
 
     public static void gotoMainScene() {
         Platform.runLater(new Runnable() {
@@ -166,9 +160,6 @@ public class App extends Application {
 
         TimeUnit.SECONDS.sleep(3);
 
-        // Parent root = FXMLLoader.load(getClass().getResource("/HomeOld.fxml"));
-
-
         this.primaryStage.setOnCloseRequest(e -> {
             Platform.exit();
             bon.killThread();
@@ -181,15 +172,13 @@ public class App extends Application {
         aantalVijf = Integer.parseInt(scanner.nextLine());
         aantalTien = Integer.parseInt(scanner.nextLine());
         aantalVijftig = Integer.parseInt(scanner.nextLine());
-        System.out.println(aantalVijf);
-        System.out.println(aantalTien);
-        System.out.println(aantalVijftig);
 
         Parent root = FXMLLoader.load(getClass().getResource("/idle.fxml"));
 
         this.primaryStage.setTitle("ATM");
         this.primaryStage.setScene(new Scene(root));
         this.primaryStage.setAlwaysOnTop(true);
+        this.primaryStage.setMaximized(true);
         this.primaryStage.show();
     }
 

@@ -40,7 +40,6 @@ public class loginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Initialize LoginController");
         App.scene = "login";
         App.keypad.permission = true;
         pin.requestFocus();

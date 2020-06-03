@@ -1,5 +1,6 @@
 package Client;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,19 +35,20 @@ public class endController implements Initializable {
     Text bedrag2;
     @FXML
     Text bedrag1;
-    @FXML
-    TextField saldo;
-
-    boolean bonPrinten=false;
 
     public void switchPrint(){
         print = !print;
-        System.out.println(print);
+        if(print) {
+            bedrag1.setText("Bon printen \u2713");
+        }
+        else {
+            bedrag1.setText("Bon printen \u274C");
+        }
     }
 
     public void doTransaction() {
         try {
-            App.apiConnector.makeWithdraw("1", App.keypad.pincode, (float)(App.totaalbedrag));
+            App.apiConnector.makeWithdraw(App.rfid.scannedCard, App.keypad.pincode, (float)(App.totaalbedrag));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,11 +62,6 @@ public class endController implements Initializable {
         App.aantalVijf-=App.nvijf;
         App.aantalTien-=App.ntien;
         App.aantalVijftig-=App.nvijftig;
-
-        App.totaalbedrag=0;
-        App.nvijf=0;
-        App.ntien=0;
-        App.nvijftig=0;
 
         try {
             FileWriter writer = new FileWriter("./src/main/resources/data.txt");
@@ -81,12 +78,26 @@ public class endController implements Initializable {
 
         App.keypad.permission = false;
 
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        App.gotoIdle();
+
+        Platform.runLater(new Runnable(){
+            @Override
+            public void run(){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/wait.fxml"));
+                Parent signupParent = null;
+                try {
+                    signupParent = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                App.waitController = (waitController) loader.getController();
+
+                Scene signupScene = new Scene(signupParent);
+                App.primaryStage.setScene(signupScene);
+                App.primaryStage.show();
+            }
+        });
+
     }
 
     @Override
@@ -94,7 +105,6 @@ public class endController implements Initializable {
         App.scene = "end";
         App.keypad.permission = true;
         bedrag2.setText("RUB: "+App.totaalbedrag);
-        saldo.setText(App.balance);
         bedrag1.setText("Bon printen \u274C");
     }
 }

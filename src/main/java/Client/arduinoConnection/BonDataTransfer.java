@@ -97,11 +97,9 @@ public class BonDataTransfer extends Thread {
 			dataArray[5] = "";
 			App.gotoIdle();
 		}
-		System.out.println(currentThread().getName() + " Closed");
 	}
 	
 	public void killThread() {
 		kill = true;
-		System.out.println("Bon Thread Closed");
 	}
 }

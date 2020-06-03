@@ -46,11 +46,9 @@ public class RFIDDataTransfer extends Thread {
 			connection.permission = true;
 			permission = false;
 		}
-		System.out.println(currentThread().getName() + " Closed");
 	}
 	
 	public void killThread() {
 		kill = true;
-		System.out.println("RFID Thread Closed");
 	}
 }

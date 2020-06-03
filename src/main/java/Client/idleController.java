@@ -19,9 +19,6 @@ import java.util.concurrent.TimeUnit;
 
 public class idleController extends Thread implements Initializable {
 
-    @FXML
-    Button start;
-
     public void run(){
         boolean temp = true;
         while(temp){

@@ -1,15 +1,8 @@
 package Client.arduinoConnection;
 
 import Client.App;
-import Client.arduinoConnection.ArduinoConnection;
 import Client.lib.ApiConnector;
-import Client.loginController;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
-import javafx.scene.layout.Pane;
-import javafx.stage.Window;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -43,8 +36,6 @@ public class KeypadDataTransfer extends Thread {
 				try {sleep(10);} catch (InterruptedException e) {}
 			}
 
-			System.out.println("Keypad Started");
-
 			connection.permission = false;
 			
 			do {
@@ -70,9 +61,9 @@ public class KeypadDataTransfer extends Thread {
 						else if(tempChar == 'A'){
 							String password = pincode;
 							try {
-								App.apiConnector = new ApiConnector("1", password, false);
-								if (App.apiConnector.verifyPin("1", password)==true) {
-									App.balance = App.apiConnector.getBalance("1", password);
+								App.apiConnector = new ApiConnector(App.rfid.scannedCard, password, false);
+								if (App.apiConnector.verifyPin(App.rfid.scannedCard, password)==true) {
+									App.balance = App.apiConnector.getBalance(App.rfid.scannedCard, password);
 									permission = false;
 									App.gotoMainScene();
 								}
@@ -86,13 +77,46 @@ public class KeypadDataTransfer extends Thread {
 						}
 					}
 					else if(App.scene == "main"){
-						if(tempChar == 'B'){
+						if(tempChar == 'C'){
+							Platform.runLater(new Runnable(){
+								@Override
+								public void run(){
+									App.mainController.gotoSaldoScene();
+								}
+							});
+							permission = false;
+						}
+						else if(tempChar == 'B'){
 							if (valueOf(App.balance) >= 70) {
-								if (App.aantalVijftig >= 1 && App.aantalTien >= 2) {
+								int balanceTemp = App.aantalVijf * 5 + App.aantalTien * 10 + App.aantalVijftig * 50;
+								if (balanceTemp >= 70) {
 									App.setNul();
 									App.totaalbedrag = 70;
-									App.nvijftig = 1;
-									App.ntien = 2;
+									if(App.aantalVijftig == 0){
+										if(App.aantalTien >= 7){
+											App.ntien = 7;
+										}
+										else{
+											for(int i = 0; i < App.aantalTien; i++){
+												App.ntien += 1;
+											}
+											int tempVijf = 70 - App.ntien * 10;
+											App.nvijf = tempVijf / 5;
+										}
+									}
+									else{
+										App.nvijftig = 1;
+										if(App.aantalTien >= 2){
+											App.ntien = 2;
+										}
+										else{
+											for(int i = 0; i < App.aantalTien; i++){
+												App.ntien += 1;
+											}
+											int tempVijf = 70 - App.ntien * 10 - App.nvijftig * 50;
+											App.nvijf = tempVijf / 5;
+										}
+									}
 									App.gotoEndScene();
 								}
 								else{
@@ -100,8 +124,9 @@ public class KeypadDataTransfer extends Thread {
 								}
 							}
 							else{
-								App.gotoWarningScene("Te weinig balans");
+								App.gotoWarningScene("Te weinig saldo");
 							}
+							permission = false;
 						}
 						else if(tempChar == 'A'){
 							Platform.runLater(new Runnable(){
@@ -110,8 +135,8 @@ public class KeypadDataTransfer extends Thread {
 									App.mainController.gotoBiljetScene();
 								}
 							});
+							permission = false;
 						}
-						permission = false;
 					}
 					else if(App.scene == "biljet"){
 						if(tempChar == 'A'){
@@ -164,6 +189,12 @@ public class KeypadDataTransfer extends Thread {
 							permission = false;
 						}
 					}
+					else if(App.scene == "saldo"){
+						if(tempChar == '*'){
+							App.gotoMainScene();
+							permission = false;
+						}
+					}
 
 					if(tempChar == '#') {
 						Client.App.rfid.scannedCard = "";
@@ -176,8 +207,6 @@ public class KeypadDataTransfer extends Thread {
 
 					sleep(10);
 					keypadInput = temp;
-					System.out.println("Pincode : " + pincode);
-					System.out.println("keypadInput : " + keypadInput);
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.out.println("Data niet aangekomen.");
@@ -186,7 +215,6 @@ public class KeypadDataTransfer extends Thread {
 			
 			connection.permission = true;
 		}
-		System.out.println(currentThread().getName() + " Closed");
 	}
 	
 	public void killThread() {
