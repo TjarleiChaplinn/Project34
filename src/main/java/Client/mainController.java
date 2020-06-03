@@ -27,7 +27,7 @@ public class mainController implements Initializable {
     @FXML
     Button stop;
     @FXML
-    Button saldoscherm;
+    Button saldoScherm;
 
     public void gotoSaldoScene() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/saldo.fxml"));
