@@ -55,7 +55,6 @@ public class endController implements Initializable {
         if(print){
             App.keypad.permission = false;
             App.bon.setData(String.valueOf(App.totaalbedrag), "U heeft geld opgenomen.", "0123" /*Aanpassen naar dynamisch nummer*/, App.rfid.scannedCard.substring(0, 10) + "******");
-            System.out.println("Nu printen!");
             App.bon.permission = true;
         }
 
