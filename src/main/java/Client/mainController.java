@@ -28,6 +28,8 @@ public class mainController implements Initializable {
     TextField saldo;
     @FXML
     Button stop;
+    @FXML
+    Button saldoscherm;
 
     public void gotoBiljetScene() {
         if (valueOf(App.balance) >= 70) {
@@ -54,6 +56,23 @@ public class mainController implements Initializable {
         else {
             App.gotoWarningScene("Te weinig saldos");
         }
+    }
+
+    public void stop(ActionEvent event) throws IOException {
+        Parent signupParent = FXMLLoader.load(getClass().getResource("/idle.fxml"));
+        Scene signupScene = new Scene(signupParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(signupScene);
+        window.show();
+    }
+    public void saldo(ActionEvent event) throws IOException {
+        Parent signupParent = FXMLLoader.load(getClass().getResource("/saldo.fxml"));
+        Scene signupScene = new Scene(signupParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(signupScene);
+        window.show();
     }
 
     @Override

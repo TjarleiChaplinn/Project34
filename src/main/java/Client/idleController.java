@@ -61,5 +61,9 @@ public class idleController extends Thread implements Initializable {
         Thread thread = new idleController();
         thread.setName("Idle Thread");
         thread.start();
+        App.totaalbedrag=0;
+        App.nvijf=0;
+        App.ntien=0;
+        App.nvijftig=0;
     }
 }

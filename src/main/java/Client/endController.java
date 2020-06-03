@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -28,7 +29,15 @@ public class endController implements Initializable {
     @FXML
     Button stop;
     @FXML
+    Button bon;
+    @FXML
     Text bedrag2;
+    @FXML
+    Text bedrag1;
+    @FXML
+    TextField saldo;
+
+    boolean bonPrinten=false;
 
     public void switchPrint(){
         print = !print;
@@ -85,5 +94,7 @@ public class endController implements Initializable {
         App.scene = "end";
         App.keypad.permission = true;
         bedrag2.setText("RUB: "+App.totaalbedrag);
+        saldo.setText(App.balance);
+        bedrag1.setText("Bon printen \u274C");
     }
 }

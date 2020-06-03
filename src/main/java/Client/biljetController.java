@@ -107,6 +107,12 @@ public class biljetController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         App.scene = "biljet";
         App.keypad.permission = true;
+        App.nvijf=0;
+        App.ntien=0;
+        App.nvijftig=0;
+        vijf.setText("x " + App.nvijf);
+        tien.setText("x " + App.ntien);
+        vijftig.setText("x " + App.nvijftig);
         App.setNul();
         saldo.setText(App.balance);
     }
