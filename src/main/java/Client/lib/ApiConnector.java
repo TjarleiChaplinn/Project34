@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
 
-
+//API voor communicatie tussen client en server, maakt gebruikt van http requests
 public class ApiConnector {
 
     private static final String apiKey = "6v1x5ujo8a4xgarh6t379h3yszgsi55o";
@@ -15,19 +15,16 @@ public class ApiConnector {
 
     private String account;
     private String pin;
+    private String balance;
     private String message;
     private boolean verification;
 
-    private String originCountry = "SO";
-    private String originBank = "BANK";
-    private String receiveCountry;
-    private String receiveBank;
-
+    //Haalt bericht van http response
     public String getMessage() {
         return message;
     }
-    //ApiConnector
-    //moet aangepast worden want moet ook kunnen verbinden zonder juiste gegevens
+
+    //maakt ApiConnector
     public ApiConnector(String account, String pin, boolean localhost) {
         this.account = account;
         this.pin = pin;
@@ -40,6 +37,7 @@ public class ApiConnector {
         }
     }
 
+    //Verifieert inloggegevens van gebruiker
     public boolean verifyPin(String account, String pin) throws IOException {
         JSONObject json = new JSONObject();
         json.put("pin", pin);
@@ -47,26 +45,31 @@ public class ApiConnector {
         if (account.substring(3,7).equals("BANK")) {
             JSONObject json1 = basicRequest("PUT", "/user/verify", json.toString());
         } else {
-//            json.put("country", account.substring(0,2));
-//            json.put("bank", account.substring(3,7));
             JSONObject json1 = basicRequest("PUT", "/gosbank/balance", json.toString());
+            balance = String.valueOf(json1.getFloat("balance"));
         }
         return verification;
     }
 
+    //Vraagt om huidige saldo aan de server
     public String getBalance(String account, String pin) throws IOException {
-        JSONObject json1 = new JSONObject();
-        json1.put("pin", pin);
-        json1.put("account", account);
-        JSONObject json = basicRequest("PUT", "/user/balance", json1.toString());
-        try {
-            String balance = json.getString("balance");
-            return balance;
-        } catch (DateTimeParseException | JSONException e) {
-            throw new IOException();
+        if (account.substring(3,7).equals("BANK")) {
+            JSONObject json1 = new JSONObject();
+            json1.put("pin", pin);
+            json1.put("account", account);
+            JSONObject json = basicRequest("PUT", "/user/balance", json1.toString());
+            try {
+                String balance = json.getString("balance");
+                return balance;
+            } catch (DateTimeParseException | JSONException e) {
+                throw new IOException();
+            }
+        } else {
+            return this.balance;
         }
     }
 
+    //Vraagt transactie aan op server
     public void makeWithdraw(String account, String pin, Float amount) throws IOException {
         JSONObject json = new JSONObject();
         json.put("amount", amount);
@@ -76,18 +79,13 @@ public class ApiConnector {
         if (account.substring(3,7).equals("BANK")) {
             JSONObject json1 = basicRequest("PUT", "/user/withdraw", json.toString());
         } else {
-//            json.put("country", account.substring(0,2));
-//            json.put("bank", account.substring(3,7));
             JSONObject json1 = basicRequest("PUT", "/gosbank/payment", json.toString());
         }
     }
 
+    //Maakt de http requests en ontvangt de response
     protected JSONObject basicRequest(String method, String endpoint, String content) throws IOException {
         Request.Builder requestBuilder = new Request.Builder()
-//                .header("originCountry", originCountry)
-//                .header("originBank", originBank)
-//                .header("receiveCountry", receiveCountry)
-//                .header("receiveBank", receiveBank)
                 .header("X-ApiKey", apiKey)
                 .url(apiUrl + endpoint);
 
@@ -146,6 +144,12 @@ public class ApiConnector {
                     String error2 = json2.getString("message");
                     message = error2;
                     System.out.println(error2);
+                    return new JSONObject(responseString);
+                case 404:
+                    JSONObject json3 = new JSONObject(responseString);
+                    String error3 = json3.getString("message");
+                    message = error3;
+                    System.out.println(error3);
                     return new JSONObject(responseString);
                 default:
                     throw new IOException();
