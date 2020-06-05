@@ -25,6 +25,11 @@ public class waitController extends Thread implements Initializable {
                 try { sleep(250); } catch (InterruptedException e) {}
                 App.waitController.message.setText("Even geduld");
             }
+            App.waitController.message.setText(
+                    "Bedankt voor het wachten! " +
+                    "\nWe hopen u de volgende keer weer van dienst te kunnen zijn."
+            );
+            try { sleep(3000); } catch (InterruptedException e) {}
             App.gotoIdle();
         }
 

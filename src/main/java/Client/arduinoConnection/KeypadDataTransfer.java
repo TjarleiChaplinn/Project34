@@ -7,7 +7,7 @@ import javafx.application.Platform;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static java.lang.Integer.valueOf;
+import static java.lang.Float.valueOf;
 
 public class KeypadDataTransfer extends Thread {
 
@@ -42,6 +42,7 @@ public class KeypadDataTransfer extends Thread {
 				try {
 					connection.sendData("1");
 					String temp = connection.getData();
+
 					hasInput = true;
 					char tempChar = temp.charAt(0);
 					if(App.scene == "login") {
@@ -182,7 +183,10 @@ public class KeypadDataTransfer extends Thread {
 							App.endController.doTransaction();
 						}
 						else if(tempChar == 'B'){
-							App.endController.switchPrint();
+							if(!App.endController.getPrint()){
+								App.endController.switchPrint();
+							}
+							App.endController.doTransaction();
 						}
 						else if(tempChar == '*'){
 							App.gotoMainScene();

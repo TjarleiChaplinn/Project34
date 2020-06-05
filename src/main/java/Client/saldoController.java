@@ -21,6 +21,6 @@ public class saldoController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         App.scene = "saldo";
         App.keypad.permission = true;
-        saldo.setText(App.balance);
+        saldo.setText("\u20BD"+App.balance);
     }
 }

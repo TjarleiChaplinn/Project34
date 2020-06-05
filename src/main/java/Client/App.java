@@ -27,9 +27,9 @@ public class App extends Application {
     public File file = new File("./src/main/resources/data.txt");
     public Scanner scanner;
 
-    static ArduinoConnection connection = new ArduinoConnection();
-    static BonDataTransfer bon = new BonDataTransfer(connection, "658", "Wijnhaven 107", "Rotterdam", false);
-    static KeypadDataTransfer keypad = new KeypadDataTransfer(connection, false);
+    public static ArduinoConnection connection = new ArduinoConnection();
+    public static BonDataTransfer bon = new BonDataTransfer(connection, "658", "Wijnhaven 107", "Rotterdam", false);
+    public static KeypadDataTransfer keypad = new KeypadDataTransfer(connection, false);
     public static RFIDDataTransfer rfid = new RFIDDataTransfer(connection, false);
 
     static public int totaalbedrag = 0;

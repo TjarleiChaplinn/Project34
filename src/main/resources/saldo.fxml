@@ -43,7 +43,7 @@
             <Font name="Arial" size="35.0" />
          </font>
       </Text>
-      <TextField fx:id="saldo" layoutX="321.0" layoutY="41.0" promptText="€" text="geld">
+      <TextField fx:id="saldo" editable="false" layoutX="321.0" layoutY="41.0" promptText="₽" text="geld">
          <font>
             <Font size="20.0" />
          </font>

@@ -20,7 +20,7 @@
             <Font size="35.0" />
          </font>
       </Button>
-      <Text fx:id="bedrag" fill="RED" fontSmoothingType="LCD" layoutX="314.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pinnen" wrappingWidth="189.13671875">
+      <Text fx:id="bedrag" fill="RED" fontSmoothingType="LCD" layoutX="314.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transactie afronden zonder bon" wrappingWidth="404.13671875">
          <font>
             <Font name="Arial" size="35.0" />
          </font>
@@ -30,7 +30,7 @@
             <Image url="@Pictures/soviet.png" />
          </image>
       </ImageView>
-      <Text fx:id="bedrag1" fill="RED" fontSmoothingType="LCD" layoutX="314.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bon printen" wrappingWidth="260.13671875">
+      <Text fx:id="bedrag1" fill="RED" fontSmoothingType="LCD" layoutX="314.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transactie afronden met bon" wrappingWidth="331.13671875">
          <font>
             <Font name="Arial" size="35.0" />
          </font>

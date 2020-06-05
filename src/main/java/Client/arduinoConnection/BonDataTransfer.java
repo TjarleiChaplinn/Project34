@@ -95,7 +95,6 @@ public class BonDataTransfer extends Thread {
 			dataArray[3] = "";
 			dataArray[4] = "";
 			dataArray[5] = "";
-			App.gotoIdle();
 		}
 	}
 	

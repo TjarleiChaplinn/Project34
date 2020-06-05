@@ -22,6 +22,7 @@ public class idleController extends Thread implements Initializable {
     public void run(){
         boolean temp = true;
         while(temp){
+            App.rfid.scannedCard = "";
             try {
                 sleep(10);
             } catch (InterruptedException e) {

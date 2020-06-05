@@ -80,7 +80,7 @@
             <Font name="Arial" size="35.0" />
          </font>
       </Text>
-      <Text fx:id="totaal" fill="RED" fontSmoothingType="LCD" layoutX="1198.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totaal: EUR 0" wrappingWidth="504.13671875">
+      <Text fx:id="totaal" fill="RED" fontSmoothingType="LCD" layoutX="1198.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totaal: ₽0" wrappingWidth="504.13671875">
          <font>
             <Font name="Arial" size="35.0" />
          </font>

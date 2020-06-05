@@ -42,7 +42,7 @@
             <Font name="Arial" size="35.0" />
          </font>
       </Text>
-      <Text fill="RED" fontSmoothingType="LCD" layoutX="380.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snel €70 pinnen" wrappingWidth="290.8033447265625">
+      <Text fill="RED" fontSmoothingType="LCD" layoutX="380.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snel ₽70 pinnen" wrappingWidth="290.8033447265625">
          <font>
             <Font name="Arial" size="35.0" />
          </font>

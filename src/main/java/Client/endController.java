@@ -23,6 +23,8 @@ public class endController implements Initializable {
 
     private boolean print = false;
 
+    public boolean getPrint(){return print;}
+
     @FXML
     Button end;
     @FXML
@@ -38,12 +40,6 @@ public class endController implements Initializable {
 
     public void switchPrint(){
         print = !print;
-        if(print) {
-            bedrag1.setText("Bon printen \u2713");
-        }
-        else {
-            bedrag1.setText("Bon printen \u274C");
-        }
     }
 
     public void doTransaction() {
@@ -103,7 +99,6 @@ public class endController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         App.scene = "end";
         App.keypad.permission = true;
-        bedrag2.setText("RUB: "+App.totaalbedrag);
-        bedrag1.setText("Bon printen \u274C");
+        bedrag2.setText("Bedrag: \u20BD"+App.totaalbedrag);
     }
 }

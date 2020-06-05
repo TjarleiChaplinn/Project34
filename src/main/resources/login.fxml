@@ -37,7 +37,7 @@
             <Font name="Arial" size="35.0" />
          </font>
       </Text>
-      <PasswordField fx:id="pin" layoutX="850.0" layoutY="118.0" prefWidth="203.0" promptText="pincode">
+      <PasswordField fx:id="pin" editable="false" layoutX="850.0" layoutY="118.0" prefWidth="203.0" promptText="pincode">
          <font>
             <Font size="20.0" />
          </font></PasswordField>

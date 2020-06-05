@@ -26,7 +26,7 @@
             <Font name="Arial" size="35.0" />
          </font>
       </Text>
-      <Text fx:id="message" fill="RED" layoutX="335.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ERROR" wrappingWidth="508.0">
+      <Text fx:id="message" fill="RED" layoutX="335.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ERROR" wrappingWidth="820.0">
          <font>
             <Font name="Arial" size="35.0" />
          </font>

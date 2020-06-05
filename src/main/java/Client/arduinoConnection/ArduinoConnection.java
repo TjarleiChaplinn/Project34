@@ -26,13 +26,35 @@ public class ArduinoConnection {
 	
 	public synchronized String getData() throws Exception {
 		try {
-			while(in.available() == 0) {}
+			double minutes = 0.25;
+			int waitTime = (int)(60 * minutes * 1000);
+			long prevTime = 0;
+			long currentTime = 0;
+			if(Client.App.keypad.permission){
+				prevTime = System.currentTimeMillis();
+				currentTime = System.currentTimeMillis();
+			}
+
+			while(in.available() == 0) {
+				if(Client.App.keypad.permission) {
+					if (currentTime - prevTime >= waitTime) {
+						break;
+					}
+					currentTime = System.currentTimeMillis();
+				}
+			}
 			
 			String word = "";
-			
-			while(in.available() > 0) {
-				word += (char)in.read();
+			if(currentTime - prevTime < waitTime) {
+				while (in.available() > 0) {
+					word += (char) in.read();
+				}
 			}
+			else{
+				word = "#";
+			}
+
+			System.out.println("Data received: " + word);
 			in.close();
 			return word;
 		} catch (IOException e) {
@@ -46,7 +68,7 @@ public class ArduinoConnection {
 		try {
 			while(in.available() > 0) {wait();}
 		} catch (IOException | InterruptedException e) {}
-		
+		System.out.println("Data send: " + temp);
 		out.write(temp);
 		out.flush();
 	}

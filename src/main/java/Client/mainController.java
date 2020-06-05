@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static java.lang.Integer.valueOf;
+import static java.lang.Float.valueOf;
 
 public class mainController implements Initializable {
 

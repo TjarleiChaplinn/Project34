@@ -52,7 +52,7 @@ public class biljetController implements Initializable {
             App.nvijf++;
             App.totaalbedrag += 5;
             vijf.setText("x " + App.nvijf);
-            totaal.setText("Totaal: RUB " + App.totaalbedrag);
+            totaal.setText("Totaal: \u20BD" + App.totaalbedrag);
         }
     }
 
@@ -61,7 +61,7 @@ public class biljetController implements Initializable {
             App.ntien++;
             App.totaalbedrag += 10;
             tien.setText("x " + App.ntien);
-            totaal.setText("Totaal: RUB " + App.totaalbedrag);
+            totaal.setText("Totaal: \u20BD" + App.totaalbedrag);
         }
     }
 
@@ -70,7 +70,7 @@ public class biljetController implements Initializable {
             App.nvijftig++;
             App.totaalbedrag += 50;
             vijftig.setText("x " + App.nvijftig);
-            totaal.setText("Totaal: RUB " + App.totaalbedrag);
+            totaal.setText("Totaal: \u20BD" + App.totaalbedrag);
         }
     }
 
@@ -79,7 +79,7 @@ public class biljetController implements Initializable {
             App.nvijf--;
             App.totaalbedrag += -5;
             vijf.setText("x " + App.nvijf);
-            totaal.setText("Totaal: RUB " + App.totaalbedrag);
+            totaal.setText("Totaal: \u20BD" + App.totaalbedrag);
         }
     }
 
@@ -88,7 +88,7 @@ public class biljetController implements Initializable {
             App.ntien--;
             App.totaalbedrag += -10;
             tien.setText("x " + App.ntien);
-            totaal.setText("Totaal: RUB " + App.totaalbedrag);
+            totaal.setText("Totaal: \u20BD" + App.totaalbedrag);
         }
     }
 
@@ -97,7 +97,7 @@ public class biljetController implements Initializable {
             App.nvijftig--;
             App.totaalbedrag += -50;
             vijftig.setText("x " + App.nvijftig);
-            totaal.setText("Totaal: RUB " + App.totaalbedrag);
+            totaal.setText("Totaal: \u20BD" + App.totaalbedrag);
         }
     }
 
