@@ -5,7 +5,7 @@
 #define SS_PIN 10
 
 int block = 1;
-String tekst = "SO-BANK-01234567";
+String tekst = "SO-BANQ-00000005";
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 

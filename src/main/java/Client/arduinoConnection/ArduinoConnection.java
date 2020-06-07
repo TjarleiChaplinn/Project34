@@ -26,33 +26,33 @@ public class ArduinoConnection {
 	
 	public synchronized String getData() throws Exception {
 		try {
-			double minutes = 0.25;
-			int waitTime = (int)(60 * minutes * 1000);
-			long prevTime = 0;
-			long currentTime = 0;
-			if(Client.App.keypad.permission){
-				prevTime = System.currentTimeMillis();
-				currentTime = System.currentTimeMillis();
-			}
+//			double minutes = 0.25;
+//			int waitTime = (int)(60 * minutes * 1000);
+//			long prevTime = 0;
+//			long currentTime = 0;
+//			if(Client.App.keypad.permission){
+//				prevTime = System.currentTimeMillis();
+//				currentTime = System.currentTimeMillis();
+//			}
 
 			while(in.available() == 0) {
-				if(Client.App.keypad.permission) {
-					if (currentTime - prevTime >= waitTime) {
-						break;
-					}
-					currentTime = System.currentTimeMillis();
-				}
+//				if(Client.App.keypad.permission) {
+//					if (currentTime - prevTime >= waitTime) {
+//						break;
+//					}
+//					currentTime = System.currentTimeMillis();
+//				}
 			}
 			
 			String word = "";
-			if(currentTime - prevTime < waitTime) {
+//			if(currentTime - prevTime < waitTime) {
 				while (in.available() > 0) {
 					word += (char) in.read();
 				}
-			}
-			else{
-				word = "#";
-			}
+//			}
+//			else{
+//				word = "#";
+//			}
 
 			System.out.println("Data received: " + word);
 			in.close();
